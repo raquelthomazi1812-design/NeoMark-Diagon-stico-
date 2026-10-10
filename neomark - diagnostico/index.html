@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico de Autoridade Jurídica | NeoMark</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#070C11] text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between relative overflow-x-hidden selection:bg-slate-700 selection:text-white">
+
+    <!-- Fundo Tecnológico: Luzes de Névoa / Radial Glows -->
+    <div class="fixed top-[-10%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-slate-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <!-- Cabeçalho Institucional High-Tech -->
+    <header class="w-full py-4 border-b border-slate-800/80 bg-[#070C11]/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3.5">
+                <!-- Logotipo com Borda Glow Sutil -->
+                <div class="p-1.5 rounded-xl bg-[#0E1721] border border-slate-800/80 shadow-lg flex items-center justify-center">
+                    <img src="logo-neomark.png" alt="NeoMark - Marketing Jurídico" class="h-8 sm:h-9 w-auto object-contain">
+                </div>
+                
+                <!-- Nome e Subtítulo da Marca -->
+                <div class="flex flex-col justify-center">
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-black tracking-[0.22em] text-lg sm:text-xl uppercase bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent leading-none">NEOMARK</span>
+                        <span class="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-slate-800 text-slate-300 text-[9px] border border-slate-700" title="Verificado">✓</span>
+                    </div>
+                    <span class="text-[9px] tracking-[0.2em] lowercase text-slate-400 font-medium pt-1 leading-none">marketing jurídico</span>
+                </div>
+            </div>
+            
+            <span class="hidden sm:inline-flex items-center gap-2 text-[10px] tracking-widest uppercase text-slate-300 font-semibold border border-slate-800 px-3.5 py-1.5 rounded-full bg-[#0E1721]/90 backdrop-blur-md">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Diagnóstico Gratuito
+            </span>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="max-w-2xl w-full mx-auto px-6 py-12 flex-grow flex flex-col justify-center relative z-10">
+
+        <!-- Tela Inicial (Hero) -->
+        <div id="welcome-screen" class="text-center space-y-7">
+            <div class="inline-block bg-[#0E1721]/90 border border-slate-800 text-slate-300 text-[11px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-[0.2em] shadow-inner backdrop-blur-md">
+                Exclusivo para Advogados & Escritórios
+            </div>
+            
+            <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+                Qual é o nível da sua <span class="bg-gradient-to-r from-white via-slate-300 to-slate-500 bg-clip-text text-transparent">autoridade?</span>
+            </h1>
+            
+            <p class="text-slate-400 text-base sm:text-lg max-w-xl mx-auto leading-relaxed font-light">
+                Mapeie os pontos cegos da sua presença institucional e construa uma marca jurídica forte e respeitada no seu segmento.
+            </p>
+            
+            <div class="pt-4">
+                <button onclick="iniciarDiagnostico()" class="group relative w-full sm:w-auto px-9 py-4 bg-slate-100 hover:bg-white text-[#070C11] font-bold rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-slate-400/20 text-base tracking-wide overflow-hidden inline-flex items-center justify-center gap-2">
+                    <span>Iniciar Diagnóstico Gratuito</span>
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tela do Questionário -->
+        <div id="quiz-screen" class="hidden space-y-8">
+            <div class="space-y-3">
+                <div class="flex justify-between text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                    <span id="pilar-indicator">Pilar 1 de 4</span>
+                    <span id="step-counter">Questão 1 de 8</span>
+                </div>
+                <div class="w-full bg-[#0E1721] h-2 rounded-full overflow-hidden border border-slate-800">
+                    <div id="progress-bar" class="bg-gradient-to-r from-slate-400 via-slate-200 to-white h-full transition-all duration-500 w-0"></div>
+                </div>
+            </div>
+
+            <div class="bg-[#0E1721]/80 backdrop-blur-md border border-slate-800 p-6 sm:p-8 rounded-3xl shadow-2xl space-y-6">
+                <h2 id="question-title" class="text-xl sm:text-2xl font-bold text-white leading-snug">
+                    Carregando pergunta...
+                </h2>
+                <div id="options-container" class="space-y-3">
+                    <!-- Opções geradas via JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Captura de Lead -->
+        <div id="lead-screen" class="hidden bg-[#0E1721]/80 backdrop-blur-md border border-slate-800 p-8 rounded-3xl shadow-2xl space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl font-bold text-white">Diagnóstico Concluído!</h2>
+                <p class="text-slate-400 text-sm font-light">Insira seus dados abaixo para liberar o relatório analítico e a recomendação personalizada da NeoMark.</p>
+            </div>
+            <form id="lead-form" onsubmit="gerarRelatorioFinal(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-semibold text-slate-400 mb-1.5">Nome Completo</label>
+                    <input type="text" id="lead-name" required placeholder="Nome do Advogado(a) / Escritório" class="w-full bg-[#070C11] border border-slate-800 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-slate-400 transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-semibold text-slate-400 mb-1.5">E-mail Profissional</label>
+                    <input type="email" id="lead-email" required placeholder="doutor@escritorio.com.br" class="w-full bg-[#070C11] border border-slate-800 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-slate-400 transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-semibold text-slate-400 mb-1.5">WhatsApp / Telefone</label>
+                    <input type="tel" id="lead-whatsapp" required placeholder="(00) 00000-0000" class="w-full bg-[#070C11] border border-slate-800 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-slate-400 transition-colors">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-semibold text-slate-400 mb-1.5">Área Principal de Atuação</label>
+                    <select id="lead-area" class="w-full bg-[#070C11] border border-slate-800 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-slate-400 transition-colors">
+                        <option value="Direito Empresarial / Societário">Direito Empresarial / Societário</option>
+                        <option value="Direito Tributário">Direito Tributário</option>
+                        <option value="Direito Trabalhista">Direito Trabalhista</option>
+                        <option value="Direito de Família / Sucessões">Direito de Família / Sucessões</option>
+                        <option value="Contencioso Cível Geral">Contencioso Cível Geral</option>
+                        <option value="Outras Áreas">Outras Áreas</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full py-4 bg-slate-100 hover:bg-white text-[#070C11] font-bold rounded-xl transition-all shadow-lg text-base mt-2">
+                    Acessar Relatório de Autoridade →
+                </button>
+            </form>
+        </div>
+
+        <!-- Tela de Relatório -->
+        <div id="result-screen" class="hidden space-y-6">
+            <div class="bg-[#0E1721]/80 backdrop-blur-md border border-slate-800 p-6 sm:p-8 rounded-3xl shadow-xl text-center space-y-4">
+                <span class="text-xs uppercase font-semibold tracking-widest text-slate-400">Índice de Autoridade Jurídica</span>
+                <div class="flex justify-center items-baseline gap-1">
+                    <span id="score-number" class="text-5xl sm:text-6xl font-black text-white">0</span>
+                    <span class="text-2xl text-slate-500 font-bold">/100</span>
+                </div>
+                <div id="score-level" class="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-900 text-slate-200 border border-slate-700">
+                    Calculando...
+                </div>
+                <p id="score-description" class="text-slate-400 text-sm max-w-md mx-auto leading-relaxed pt-2 font-light">
+                    ...
+                </p>
+            </div>
+
+            <!-- Recomendação e CTA do WhatsApp High-Tech -->
+            <div class="bg-[#0E1721]/80 backdrop-blur-md border border-emerald-900/50 p-6 sm:p-8 rounded-3xl space-y-4 shadow-xl">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <span class="relative flex h-2.5 w-2.5">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    Análise Estratégica NeoMark
+                </h3>
+                <p id="neomark-rec" class="text-slate-300 text-sm leading-relaxed font-light">
+                    ...
+                </p>
+                <div class="pt-3">
+                    <a id="whatsapp-btn" href="#" target="_blank" class="block w-full text-center py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-2xl transition-all shadow-lg text-sm sm:text-base">
+                        Falar no WhatsApp com Especialista da NeoMark 💬
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="w-full py-6 border-t border-slate-800/80 text-center text-xs text-slate-500 relative z-10">
+        &copy; 2026 NEOMARK - Marketing Jurídico Estratégico. Todos os direitos reservados.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
